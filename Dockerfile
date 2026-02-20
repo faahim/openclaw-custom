@@ -46,7 +46,8 @@ RUN printf '#!/bin/sh\nexec node /app/dist/index.js "$@"\n' > /usr/local/bin/ope
     chmod +x /usr/local/bin/openclaw
 
 # Allow non-root user to write temp files during runtime
-RUN chown -R node:node /app
+# and install global npm packages (skills, etc.)
+RUN chown -R node:node /app /usr/local/lib/node_modules /usr/local/bin /usr/local/share
 
 USER node
 
